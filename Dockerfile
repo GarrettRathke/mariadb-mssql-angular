@@ -1,8 +1,5 @@
-FROM mariadb:10.4
-
-ENV MARIADB_ROOT_PASSWORD=password
-ENV MARIADB_DATABASE=mariadb
-ENV MARIADB_USER=user
-ENV MARIADB_PASSWORD=password
-
-EXPOSE 3306
+FROM amazoncorretto:17-alpine-jdk
+VOLUME /main-app
+ADD build/libs/mariadb-mssql-angular-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar","/app.jar"]
