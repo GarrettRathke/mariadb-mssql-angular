@@ -1,13 +1,20 @@
-version: '3.1'
+version: '3.8'
 
 services:
-
-  db:
-    image: mariadb
-    restart: always
-
-  adminer:
-    image: adminer
+  api_service:
+    build: .
     restart: always
     ports:
-      - 8080:8080
+      - "8080:8080"
+    depends_on:
+      - maria_db
+  maria_db:
+    image: "mariadb:latest"
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: mariadb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password

@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://maria_db:3306/mariadb?user=user&password=password&useSSL=false&serverTimezone=UTC
+    username: user
+    password: password
+    driver-class-name: org.mariadb.jdbc.Driver
+  sql:
+    init:
+      mode: always
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
