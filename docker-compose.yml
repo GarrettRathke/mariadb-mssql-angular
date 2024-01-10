@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mariadb
+    restart: always
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
