@@ -13,7 +13,6 @@ export class HogwartsService {
   constructor(private http: HttpClient) { }
 
   getHouses(): Observable<House[]> {
-    return of('http://localhost:8080/houses');
-    return this.http.get<Hero[]>(this.housesUrl)
+    return this.http.get<House[]>(this.housesUrl)
   }
 }
