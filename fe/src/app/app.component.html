@@ -1,16 +1,25 @@
+<h3>Hogwarts Houses</h3>
 <ng-container *ngFor="let house of houses">
-    <li *ngIf="house; then validHouseData; else errorHouseData">
-    </li>
-    <ng-template #validHouseData>
-        <div>
-            {{ house.name }}
-        </div>
-    </ng-template>
-    <ng-template #errorHouseData>
-        <div>
-            No house data
-        </div>
-    </ng-template>
+  <li *ngIf="house; then validHouseData; else errorHouseData"></li>
+  <ng-template #validHouseData>
+    <div>
+      {{ house.name }}
+    </div>
+  </ng-template>
+  <ng-template #errorHouseData>
+    <div>No house data</div>
+  </ng-template>
+</ng-container>
+
+<h3>Hogwarts Students</h3>
+<ng-container *ngFor="let student of students">
+  <li *ngIf="student; then validStudentData; else errorStudentData"></li>
+  <ng-template #validStudentData>
+    <div>{{ student.firstName }} {{ student.lastName }}</div>
+  </ng-template>
+  <ng-template #errorStudentData>
+    <div>No student data</div>
+  </ng-template>
 </ng-container>
 
 <router-outlet></router-outlet>
