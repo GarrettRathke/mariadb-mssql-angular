@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HogwartsService } from './services/hogwarts.service';
-import { House } from './models/house';
+import House from './models/house';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, NgFor, RouterOutlet],
+  imports: [CommonModule, NgFor, NgIf, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

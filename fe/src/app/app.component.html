@@ -1,3 +1,16 @@
-<div *ngFor="let house of houses">{{ house.name }}</div>
+<ng-container *ngFor="let house of houses">
+    <li *ngIf="house; then validHouseData; else errorHouseData">
+    </li>
+    <ng-template #validHouseData>
+        <div>
+            {{ house.name }}
+        </div>
+    </ng-template>
+    <ng-template #errorHouseData>
+        <div>
+            No house data
+        </div>
+    </ng-template>
+</ng-container>
 
 <router-outlet></router-outlet>
