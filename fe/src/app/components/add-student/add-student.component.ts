@@ -1,12 +1,15 @@
 import { Component } from "@angular/core";
 import { NgIf } from "@angular/common";
-import { FormBuilder } from "@angular/forms";
+import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { HogwartsService } from "../../services/hogwarts.service";
+import Student from "../../models/student";
+import { mockHouses } from "../../services/mockData";
+import { HogwartsHouse } from "../../models/house";
 
 @Component({
   selector: "app-add-student",
   standalone: true,
-  imports: [NgIf],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: "./add-student.component.html",
   styleUrl: "./add-student.component.css",
 })
@@ -29,9 +32,48 @@ export class AddStudentComponent {
   }
 
   onSubmit(): void {
-    // TODO: add student to database
+    if (!this.isValidForm()) {
+      alert("Please fill out all fields");
+      return;
+    }
+    const selectedHouse = mockHouses.find(
+      (house) => house.name === this.addStudentForm.value.house
+    );
+    if (!selectedHouse) {
+      alert("Invalid house");
+      return;
+    }
     console.log("Adding student", this.addStudentForm.value);
-
+    const newStudent: Student = {
+      firstName: this.addStudentForm.value.firstName as string,
+      lastName: this.addStudentForm.value.lastName as string,
+      house: {
+        id: selectedHouse.id,
+        name: this.addStudentForm.value.house as HogwartsHouse,
+      },
+    };
+    this.hogwartsService.addStudent(newStudent).subscribe((student) => {
+      console.log("Added student", student);
+      this.showAddStudentForm = false;
+    });
     this.addStudentForm.reset();
+  }
+
+  onCancel(): void {
+    this.showAddStudentForm = false;
+    this.addStudentForm.reset();
+  }
+
+  // TODO: proper form validation
+  isValidForm(): boolean {
+    let valid = false;
+    if (
+      this.addStudentForm.value.firstName &&
+      this.addStudentForm.value.lastName &&
+      this.addStudentForm.value.house
+    ) {
+      valid = true;
+    }
+    return valid;
   }
 }

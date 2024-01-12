@@ -1,3 +1,22 @@
 <button type="button" (click)="onAddStudent()">Add Student</button>
 
-<div *ngIf="showAddStudentForm">Add Student Form</div>
+<form
+  *ngIf="showAddStudentForm"
+  [formGroup]="addStudentForm"
+  (ngSubmit)="onSubmit()"
+>
+  <div>
+    <label for="firstName"> First Name </label>
+    <input type="text" formControlName="firstName" />
+  </div>
+  <div>
+    <label for="lastName"> Last Name </label>
+    <input type="text" formControlName="lastName" />
+  </div>
+  <div>
+    <label for="house"> House </label>
+    <input type="text" formControlName="house" />
+  </div>
+  <button type="submit">Submit</button>
+  <button type="button" (click)="onCancel()">Cancel</button>
+</form>
