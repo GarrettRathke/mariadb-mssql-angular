@@ -40,4 +40,46 @@ export class HogwartsService {
       );
     }
   }
+
+  addStudent(student: Student): Observable<Student> {
+    if (!environment.isContainerized) {
+      mockStudents.push(student);
+      return of(student);
+    } else {
+      return this.http.post<Student>(this.studentsUrl, student).pipe(
+        catchError((err, caught) => {
+          console.log(err);
+          return caught;
+        })
+      );
+    }
+  }
+
+  updateStudent(student: Student): Observable<Student> {
+    if (!environment.isContainerized) {
+      mockStudents[mockStudents.indexOf(student)] = student;
+      return of(student);
+    } else {
+      return this.http.put<Student>(this.studentsUrl, student).pipe(
+        catchError((err, caught) => {
+          console.log(err);
+          return caught;
+        })
+      );
+    }
+  }
+
+  deleteStudent(student: Student): Observable<Student> {
+    if (!environment.isContainerized) {
+      mockStudents.splice(mockStudents.indexOf(student), 1);
+      return of(student);
+    } else {
+      return this.http.delete<Student>(this.studentsUrl + "/" + student.id).pipe(
+        catchError((err, caught) => {
+          console.log(err);
+          return caught;
+        })
+      );
+    }
+  }
 }

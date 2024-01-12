@@ -5,5 +5,5 @@ export type HogwartsHouse = "Gryffindor" | "Hufflepuff" | "Ravenclaw" | "Slyther
 export default interface House {
   id: number;
   name: HogwartsHouse;
-  students: Student[];
+  students?: Student[];
 }
