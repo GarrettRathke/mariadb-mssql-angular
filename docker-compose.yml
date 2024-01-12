@@ -1,13 +1,26 @@
 version: '3.8'
 
 services:
-  api_service:
-    build: .
+  backend:
+    image: backend
+    container_name: backend
+    build:
+        context: ./be
     restart: always
     ports:
-      - "8080:8080"
+      - "8080:80"
     depends_on:
       - maria_db
+  frontend:
+    image: frontend
+    container_name: frontend
+    build:
+        context: ./fe
+    restart: always
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
   maria_db:
     image: "mariadb:latest"
     restart: always
