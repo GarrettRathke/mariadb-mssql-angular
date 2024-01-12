@@ -12,5 +12,7 @@ public class Student {
     private Integer id;
     private String firstName;
     private String lastName;
+    @ManyToOne
+    @JoinColumn(name="houseId", nullable=false)
     private House house;
 }
