@@ -8,7 +8,7 @@ import { House } from '../models/house';
 })
 export class HogwartsService {
 
-  private housesUrl = 'http://localhost:8080/houses';
+  private housesUrl = '/api/houses';
 
   constructor(private http: HttpClient) { }
 
