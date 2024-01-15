@@ -46,7 +46,7 @@ export class HogwartsService {
       mockStudents.push(student);
       return of(student);
     } else {
-      return this.http.post<Student>(this.studentsUrl, student).pipe(
+      return this.http.post<Student>('http://localhost:8080/api/students', student).pipe(
         catchError((err, caught) => {
           console.log(err);
           return caught;

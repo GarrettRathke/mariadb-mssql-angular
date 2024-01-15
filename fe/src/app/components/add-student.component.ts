@@ -62,8 +62,8 @@ export class AddStudentComponent {
     this.hogwartsService.addStudent(newStudent).subscribe((student) => {
       console.log("Added student", student);
       this.showAddStudentForm = false;
+      this.addStudentForm.reset();
     });
-    this.addStudentForm.reset();
   }
 
   onCancel(): void {
