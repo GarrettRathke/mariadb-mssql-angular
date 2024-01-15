@@ -9,5 +9,4 @@ To build and run, simply open a terminal and use the command, docker compose up.
 ## Usage
 The Angular frontend is accessible at http://localhost:4200,
 and the Spring Boot backend is accessible at http://localhost:8080/api/<endpoint>. 
-The backend also has a Swagger UI at http://localhost:8080/swagger-ui.html for inspecting 
-and testing the endpoints as well as a health check at http://localhost:8080/actuator/health.
+The backend also has a health check at http://localhost:8080/actuator/health.
