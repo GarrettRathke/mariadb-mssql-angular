@@ -23,4 +23,8 @@ public class StudentController {
         return (List<Student>) studentRepository.findAll();
     }
 
+    @GetMapping("/students/{id}")
+    public Student getStudentById(Integer id) {
+        return studentRepository.findById(id).orElse(null);
+    }
 }
