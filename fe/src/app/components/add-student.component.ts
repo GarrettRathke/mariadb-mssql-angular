@@ -1,10 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { NgIf } from "@angular/common";
 import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { HogwartsService } from "../services/hogwarts.service";
 import Student from "../models/student";
 import { mockHouses } from "../services/mockData";
-import { HogwartsHouse } from "../models/house";
+import House, { HogwartsHouse } from "../models/house";
+import { environment } from "../../environment/environment";
 
 @Component({
   selector: "app-add-student",
@@ -14,6 +15,8 @@ import { HogwartsHouse } from "../models/house";
   styleUrl: "./add-student.component.css",
 })
 export class AddStudentComponent {
+  @Input() houses: House[] = [];
+
   showAddStudentForm: boolean = false;
 
   addStudentForm = this.formBuilder.group({
@@ -36,9 +39,13 @@ export class AddStudentComponent {
       alert("Please fill out all fields");
       return;
     }
-    const selectedHouse = mockHouses.find(
-      (house) => house.name === this.addStudentForm.value.house
-    );
+    const selectedHouse = environment.isContainerized
+      ? this.houses.find(
+          (house) => house.name === this.addStudentForm.value.house
+        )
+      : mockHouses.find(
+          (house) => house.name === this.addStudentForm.value.house
+        );
     if (!selectedHouse) {
       alert("Invalid house");
       return;
