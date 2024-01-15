@@ -2,10 +2,7 @@ package com.garrett.rathke.mariadbmssqlangular.controllers;
 
 import com.garrett.rathke.mariadbmssqlangular.models.Student;
 import com.garrett.rathke.mariadbmssqlangular.repositories.StudentRepository;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +23,29 @@ public class StudentController {
     }
 
     @GetMapping("/students/{id}")
-    public Student getStudentById(Integer id) {
+    public Student getStudentById(@PathVariable Integer id) {
         return studentRepository.findById(id).orElse(null);
+    }
+
+    @PostMapping("/students")
+    public Student createStudent(@RequestBody Student student) {
+        return studentRepository.save(student);
+    }
+
+    @PutMapping("/students/{id}")
+    public void updateStudent(@PathVariable Integer id, @RequestBody Student student) {
+        Student studentToUpdate = studentRepository.findById(id).orElse(null);
+        if(studentToUpdate == null) {
+            return;
+        }
+        studentToUpdate.setFirstName(student.getFirstName());
+        studentToUpdate.setLastName(student.getLastName());
+        studentToUpdate.setHouse(student.getHouse());
+        studentRepository.save(studentToUpdate);
+    }
+
+    @DeleteMapping("/students/{id}")
+    public void deleteStudent(@PathVariable Integer id) {
+        studentRepository.deleteById(id);
     }
 }
