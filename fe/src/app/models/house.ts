@@ -1,4 +1,9 @@
-export interface House {
+import Student from "./student";
+
+export type HogwartsHouse = "Gryffindor" | "Hufflepuff" | "Ravenclaw" | "Slytherin";
+
+export default interface House {
   id: number;
-  name: string;
+  name: HogwartsHouse;
+  students?: Student[];
 }
