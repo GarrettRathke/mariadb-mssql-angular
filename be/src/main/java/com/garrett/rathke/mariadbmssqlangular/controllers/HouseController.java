@@ -23,4 +23,5 @@ public class HouseController {
         return (List<House>) houseRepository.findAll();
     }
 
+
 }
