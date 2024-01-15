@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mariadb://maria_db:3306/mariadb?user=user&password=password&useSSL=false&serverTimezone=UTC
+    url: jdbc:mariadb://maria_db:3306/mariadb
     username: user
     password: password
     driver-class-name: org.mariadb.jdbc.Driver
@@ -9,5 +9,14 @@ spring:
       mode: always
   jpa:
     show-sql: true
+    defer-datasource-initialization: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+        show-details: always

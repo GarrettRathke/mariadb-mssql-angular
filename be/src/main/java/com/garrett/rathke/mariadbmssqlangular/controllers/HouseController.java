@@ -23,4 +23,8 @@ public class HouseController {
         return (List<House>) houseRepository.findAll();
     }
 
+    @GetMapping("/houses/{id}")
+    public House getHouseById(Integer id) {
+        return houseRepository.findById(id).orElse(null);
+    }
 }
