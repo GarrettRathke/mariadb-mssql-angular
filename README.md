@@ -1,5 +1,5 @@
-# mariadb-mssql-angular
-A containerized DB migration showcase with a Spring Boot backend and an Angular frontend
+# mariadb-springboot-angular
+A containerized Spring Boot backend and Angular frontend
 
 ## Build & Run
 There are 3 images that are built and run in a single container; 
